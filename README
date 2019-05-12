@@ -1,0 +1,3 @@
+Simple OpenCV implementation to detect bright spots in images.
+
+In the context of the OverSeer project, that bright spot must be the Sun. So, the largest issue comes from the finding specifically the largest bright spot. This is currently in the works..
