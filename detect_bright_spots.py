@@ -11,7 +11,7 @@ ap.add_argument("-i", "--image", required=True,
 	help="path to the image file")
 args = vars(ap.parse_args())
 
-#read the image file into image and convert to grayscale and blur to reduce noise
+#read the image file into image and convert to grayscale and use Gaussian blur to reduce noise
 image = cv2.imread(args["image"])
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 blurred = cv2.GaussianBlur(gray, (11, 11), 0)
@@ -20,7 +20,7 @@ blurred = cv2.GaussianBlur(gray, (11, 11), 0)
 # anything lower than 200 is converted to purely black
 thresh = cv2.threshold(blurred, 200, 255, cv2.THRESH_BINARY)[1]
 
-# more smoothing to remove noise
+# more smoothing to remove noise; erode and dilate to reduce more noise
 thresh = cv2.erode(thresh, None, iterations=2)
 thresh = cv2.dilate(thresh, None, iterations=4)
 
